@@ -5,15 +5,19 @@
     <title>4digits</title>
     <meta name="author" content="Matt Braddock">
     <meta name="description" content="Simple implementation of Bulls and Cows">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap" rel="stylesheet">
     <style>
+	  .content {
+	    width: 95%;
+		max-width: 450px;
+		margin: auto;
+	  }
 	  body {
         font-family: 'Cutive Mono', monospace;
-        font-size: 24px;
+        font-size: 20px;
         color: #666666;
-        max-width: 320px;
-        margin: auto;
       }
       #links {
         margin-top: 5vh;
@@ -56,6 +60,7 @@
     </style>
   </head>
   <body>
+    <div class="content">
     <div id="links" style="text-align: center;">
       <a onclick="loadAbout()" href="javascript:void(0)">about</a>&nbsp;|&nbsp;<a href="https://github.com/slashinfty/4digits">source</a>
     </div>
@@ -80,6 +85,7 @@
         <a onclick="restart()" href="javascript:void(0)">restart</a>
       </div>
     </div>
+	</div>
   </body>
   <script>
     var guessCount = 0;
