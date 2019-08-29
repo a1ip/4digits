@@ -5,20 +5,21 @@
     <title>4digits</title>
     <meta name="author" content="Matt Braddock">
     <meta name="description" content="Simple implementation of Bulls and Cows">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap" rel="stylesheet">
     <style>
-	  .content {
-	    width: 95%;
-		max-width: 450px;
-		margin: auto;
-	  }
-	  body {
-	    font-family: 'Cutive Mono', monospace;
-		font-size: 20px;
-		color: #666666;
-	  }
+      .content {
+        width: 95%;
+        max-width: 450px;
+        margin: auto;
+      }
+      body {
+        font-family: 'Cutive Mono', monospace;
+        font-size: 20px;
+        color: #666666;
+      }
       #links {
         margin-top: 5vh;
         margin-bottom: 10px;
@@ -38,25 +39,25 @@
         font-size: 55px;
         text-align: center;
         width: 100%;
-		margin-bottom: 10px;
+        margin-bottom: 10px;
       }
-	  div.table {
-	    display: flex;
-		flex-direction: column;
-		text-align: center;
-	  }
-	  ul {
-	    list-style: none;
-		flex: 1;
-		margin-bottom: -5px;
-		padding: 0;
-	  }
-	  li {
-	    flex: 1;
-	  }
-	  #restart {
-	    margin-top: 20px;
-	  }
+      div.table {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        flex: 1;
+        margin-bottom: -5px;
+        padding: 0;
+      }
+      li {
+        flex: 1;
+      }
+      #restart {
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body>
@@ -80,7 +81,7 @@
         <ul id="row8" style="display: none;"><li id="guess8"></li><li id="clue8"></li></ul>
         <ul id="row9" style="display: none;"><li id="guess9"></li><li id="clue9"></li></ul>
         <ul id="row10" style="display: none;"><li id="guess10"></li><li id="clue10"></li></ul>
-      </table>
+      </div>
       <div id="restart" style="display: none; margin-top: 5px">
         <a onclick="restart()" href="javascript:void(0)">restart</a>
       </div>
@@ -89,67 +90,67 @@
   </body>
   <script>
     var guessCount = 0;
-	var answer = "";
-	function setAnswer() {
-	  let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-	  do {
-	    for (let i = array.length - 1; i > 0; i--) {
-		  let r = Math.floor(Math.random() * (i + 1));
-		  let a = array[r];
-		  array[r] = array[i];
-		  array[i] = a;
-		}
-	  } while (array[0] === 0);
-	  for (let j = 0; j < 4; j++) {
-	    answer = answer + array[j].toString();
-	  }
-	}
-	function submit(e) {
-	  if (e.keyCode !== 13) return;
-	  let userGuess = document.getElementById("guess").value;
-	  if (!(/^[1-9](?:(\d)(?!.*\1)){3}$/.test(userGuess))) {
-	    document.getElementById("guess").value = "";
-	    document.getElementById("guess").focus();
-		return;
-	  }
-	  if (answer === "") setAnswer();
-	  let correct = 0;
-	  let close = 0;
-	  guessCount++;
-	  for (let k = 0; k < 4; k++) {
-	    if (userGuess[k] === answer[k]) correct++;
-		else if (answer.includes(userGuess[k])) close++;
-	  }
-	  document.getElementById("guess" + guessCount).innerHTML = userGuess;
-	  document.getElementById("clue" + guessCount).innerHTML = correct + "!" + close + "?";
-	  document.getElementById("row" + guessCount).style.display = "flex";
-	  if (userGuess === answer || guessCount === 10) {
-	    document.getElementById("guess").value = answer;
-		document.getElementById("guess").disabled = true;
-		document.getElementById("restart").style.display = "block";
-	  }
-	  document.getElementById("guess").value = "";
-	  document.getElementById("guess").focus();
-	}
-	function restart() {
-	  for (let l = 1; l <= 10; l++) {
-	    document.getElementById("row" + l).style.display = "none";
-		document.getElementById("guess" + l).innerHTML = "";
-		document.getElementById("clue" + l).innerHTML = "";
+    var answer = "";
+    function setAnswer() {
+      let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      do {
+        for (let i = array.length - 1; i > 0; i--) {
+          let r = Math.floor(Math.random() * (i + 1));
+          let a = array[r];
+          array[r] = array[i];
+          array[i] = a;
+        }
+      } while (array[0] === 0);
+      for (let j = 0; j < 4; j++) {
+        answer = answer + array[j].toString();
       }
-	  document.getElementById("restart").style.display = "none";
-	  document.getElementById("guess").value = "";
-	  document.getElementById("guess").disabled = false;
-	  guessCount = 0;
-	  setAnswer();
-	}
-	function loadAbout() {
-	  document.getElementById("game").style.display = "none";
-	  document.getElementById("about").style.display = "block";
-	}
-	function hideAbout() {
-	  document.getElementById("about").style.display = "none";
-	  document.getElementById("game").style.display = "block";
-	}
+    }
+    function submit(e) {
+      if (e.keyCode !== 13) return;
+      let userGuess = document.getElementById("guess").value;
+      if (!(/^[1-9](?:(\d)(?!.*\1)){3}$/.test(userGuess))) {
+        document.getElementById("guess").value = "";
+  	    document.getElementById("guess").focus();
+        return;
+      }
+      if (answer === "") setAnswer();
+      let correct = 0;
+      let close = 0;
+      guessCount++;
+      for (let k = 0; k < 4; k++) {
+        if (userGuess[k] === answer[k]) correct++;
+        else if (answer.includes(userGuess[k])) close++;
+      }
+      document.getElementById("guess" + guessCount).innerHTML = userGuess;
+      document.getElementById("clue" + guessCount).innerHTML = correct + "!" + close + "?";
+      document.getElementById("row" + guessCount).style.display = "flex";
+      if (userGuess === answer || guessCount === 10) {
+        document.getElementById("guess").value = answer;
+        document.getElementById("guess").disabled = true;
+        document.getElementById("restart").style.display = "block";
+      }
+      document.getElementById("guess").value = "";
+      document.getElementById("guess").focus();
+    }
+    function restart() {
+      for (let l = 1; l <= 10; l++) {
+        document.getElementById("row" + l).style.display = "none";
+        document.getElementById("guess" + l).innerHTML = "";
+        document.getElementById("clue" + l).innerHTML = "";
+      }
+      document.getElementById("restart").style.display = "none";
+      document.getElementById("guess").value = "";
+      document.getElementById("guess").disabled = false;
+      guessCount = 0;
+      setAnswer();
+    }
+    function loadAbout() {
+      document.getElementById("game").style.display = "none";
+      document.getElementById("about").style.display = "block";
+    }
+    function hideAbout() {
+      document.getElementById("about").style.display = "none";
+      document.getElementById("game").style.display = "block";
+    }
   </script>
 </html>
